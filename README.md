@@ -34,9 +34,9 @@ Things you may want to cover:
 | firstname_kanji    | string | null: false |
 | lastname_kana      | string | null: false |
 | firstname_kana     | string | null: false |
-| birthday           | string | null: false |
+| birthday           | date   | null: false |
 | email              | string | null: false |
-| password           | string | null: false |
+| encrypted_password | string | null: false |
 
 
 ### Association
@@ -50,7 +50,6 @@ Things you may want to cover:
 
 | Column             | Type            | Options                        |
 | ------------------ | --------------- | ------------------------------ |
-| image              | ActiveStorage   | null: false                    |
 | title              | string          | null: false                    |
 | discription        | text            | null: false                    |
 | category_id        | integer         | null: false, ActiveHash        |
@@ -86,13 +85,12 @@ Things you may want to cover:
 
 | Column             | Type            | Options                        |
 | ------------------ | --------------- | ------------------------------ |
-| zipcode            | integer         | null: false                    |
+| zipcode            | string          | null: false                    |
 | prefecture_id      | integer         | null: false                    |
 | city               | string          | null: false                    |
-| adress             | integer         | null: false                    |
-| condition_id       | integer         | null: false                    |
+| adress             | string          | null: false                    |
 | building           | string          |                                |
-| phonenumber        | integer         | null: false                    |
+| phonenumber        | string          | null: false                    |
 | order              | references      | null: false, foreign_key: true |
 | user               | references      | null: false, foreign_key: true |
 
