@@ -126,11 +126,12 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
 
+    <ul class='item-lists'>
+    <% if @items.present? %>
+      <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
-        <% @items.each do |item| %>
         <div class='item-img-content'>
           <%= image_tag(item.image, class: "item-img") %>
 
@@ -154,10 +155,10 @@
           </div>
         </div>
         <% end %>
-        <% end %>
+      <% end %>
       </li>
 
-      <% unless @items.present? %>
+    <% else %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -175,7 +176,7 @@
         </div>
         <% end %>
       </li>
-      <% end %>
+    <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
