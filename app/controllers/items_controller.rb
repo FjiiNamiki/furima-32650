@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show]
-  before_action :set_item_user, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_item_user, only: [:edit, :update, :destroy]
   
   def index
     @items = Item.order("created_at DESC")
@@ -31,6 +31,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
