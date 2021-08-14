@@ -6,7 +6,7 @@ class OrderDestination
     validates :zipcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
     validates :phonenumber, format: {with: /\A\d{11}\z/}
   end
-  validates :prefecture_id numericality:, { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
