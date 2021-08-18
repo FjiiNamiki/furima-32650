@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def index
     @order_destination = OrderDestination.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
