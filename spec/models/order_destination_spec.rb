@@ -9,7 +9,7 @@ RSpec.describe OrderDestination, type: :model do
     end
 
     context '商品購入できるとき' do
-      it 'zipcodeとcityとadressとbuildingとphonenumberが存在すれば登録できる' do
+      it 'tokenとzipcodeとcityとadressとbuildingとphonenumberが存在すれば登録できる' do
         expect(@order_destination).to be_valid
       end
       it 'buildingが空でも登録できる' do
@@ -22,6 +22,12 @@ RSpec.describe OrderDestination, type: :model do
       end
     end
     context '商品購入できないとき' do
+      it "tokenが空では登録できないこと" do
+        @order_destination.token = nil
+        @order_destination.valid?
+        binding.pry
+        expect(@order_destination.errors.full_messages).to include("Token can't be blank")
+      end
       it 'zipcodeが空では登録できない' do
         @order_destination.zipcode = ''
         @order_destination.valid?
