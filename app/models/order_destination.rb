@@ -4,7 +4,7 @@ class OrderDestination
   with_options presence: true do
     validates :token, :city, :adress, :user_id, :item_id
     validates :zipcode, format: {with: /\A\d{3}[-]\d{4}\z/}
-    validates :phonenumber, format: {with: /\A\d{,11}\z/}
+    validates :phonenumber, format: {with: /\A\d{10,11}\z/}
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 

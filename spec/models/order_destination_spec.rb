@@ -57,8 +57,13 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include "Phonenumber can't be blank"
       end
-      it 'phonenumberが11桁以上の数字では登録できない' do
+      it 'phonenumberが12桁以上の数字では登録できない' do
         @order_destination.phonenumber = '111111111111'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include "Phonenumber is invalid"
+      end
+      it 'phonenumberが9桁以下の数字では登録できない' do
+        @order_destination.phonenumber = '111111111'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include "Phonenumber is invalid"
       end
@@ -66,6 +71,16 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.phonenumber = 'ああ'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include "Phonenumber is invalid"
+      end
+      it 'userが紐づいていないと登録できない' do
+        @order_destination.user_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include "User can't be blank"
+      end
+      it 'itemが紐づいていないと登録できない' do
+        @order_destination.item_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include "Item can't be blank"
       end
     end
   end
